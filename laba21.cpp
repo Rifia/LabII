@@ -30,10 +30,13 @@ double compare (trngl Tri[], int m, int n){
 
 int main()
 {   
-   trngl Tri[3] = {{{2, 1}, {4, 6}, {7, 3}}, {{2, 1}, {4, 6}, {8, 3}}, {{2, 1}, {5, 2}, {4, 8}}}; 
+   const int c = 3;
+   trngl Tri[c];
    
-   for (int i = 0; i < 3; i++)
-    for (int j = i+1; j < 3; j++) cout << compare(Tri, i, j) << endl;
+   for (int i = 0; i < c; i++) cin >> Tri[i].a.x >> Tri[i].a.y >> Tri[i].b.x >> Tri[i].b.y >> Tri[i].c.x >> Tri[i].c.y; 
+   
+   for (int i = 0; i < c; i++)
+    for (int j = i+1; j < c; j++) cout << compare(Tri, i, j) << endl;
         
     return 0;
 }
