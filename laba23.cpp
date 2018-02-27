@@ -12,17 +12,16 @@ int main() {
     ofstream ofs(filename.c_str());
     
     char *str = new char [1024];//count strings
-    int i=0, m = 0, size[100];
+    int i=0;
     while (!file.eof())
     {
         file.getline(str, 1024, '\n');
         i++;
-        m++;
     }
     delete[]str;
     
     for(int j = i; j<i; j++){
-        file.getline(str, 1024, '\n');
+       
         }
 return 0;
 }
