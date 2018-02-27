@@ -24,8 +24,9 @@ int main()
 {
 	string a, word; int z = -1, r; 
 	getline(cin, a);
-	char* b = new char[20];
 	int w = a.length();
+	int size = w*5;
+	char* b = new char[size];
 	for(int i = 0; i<w; i++){
 	    r = int (a[i]);
 	    if(r>=48&&r<=57){
