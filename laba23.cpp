@@ -5,23 +5,24 @@ using namespace std;
 
 int main() {
     ifstream in;
-    in.open("input.txt");
+    string fileinput;
+    cout << "enter file name: ";
+    getline(cin, fileinput);
+    in.open(fileinput);
     
     string str;
     int linenum = 0;
     
     while (getline(in, str)) {
-        cout << str<< endl;
         linenum++;
-        
     }
-    
     in.close();
-    in.open("input.txt");
-    cout << "количество строк = " << linenum << endl;;
+    
+    in.open(fileinput);
     
     ofstream out;
     out.open("output.txt");
+    
     if(!out.is_open()){
         cout<<"File not found";
     }
@@ -30,13 +31,21 @@ int main() {
     int count = 0;
     
     while (getline(in, str)) {
-        cout << str << endl;
-        count++;
-        for(int i = 0; i<str.length();i++)
-            if(str[i]<='0' && str[i]>='9')
-    }
+        count++; 
+        bool q = true;
+        for(int i = 0; i<str.length(); i++){
+            if( str[i]<'0' || str[i]>'9') {
+				q = false; 
+				break;
+			}
+        }
+		if ( q == true || count >= linenum - 1){
+			out << str << '\n';
+			}
+		}
     
     in.close();
     out.close();
    
     return 0;
+	}
