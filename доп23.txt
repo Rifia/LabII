@@ -1,1 +1,0 @@
-https://ru.stackoverflow.com/questions/416007/Вывод-строки-под-номером-n-Из-файла
