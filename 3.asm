@@ -2,46 +2,50 @@
 org 100h 
 .data 
 str db 'ERROR! null a','$' 
-a db 8 
-c db -1 
-d db 0
-two db -2
-et db 82 
+c dw -1 
+d dw 1 
+a db 8
+t dw -2
+q db 0 
+et dw 82 
 result dw 0 
-.code  
+.code 
 
-mov al,[c] 
-CBW 
-imul [two]  
+mov ax,[t] ;-2*c=2 
+imul [c]     ;ax=2
 
-mov cl, [d]
-CBW 
-imul [et]
+mov [t], ax  ;two=-2*c=2
+mov ax, 0    ;ax=0
 
-add ax, cx 
+mov ax, [d]  ;d*82=0 
+imul [et]    ;ax=0
 
-xor cx, cx
+add ax, [t] ;ax=-2*c+d*82=2
 
-mov cl, [a] 
-cmp cl,4 
+mov [c], ax   ;c=2(chislitel)    
+mov ax, 0
+
+mov cl, [a]
+cmp cl, 4
 jz exitnull
-mov bl, 4 
-CBW
-idiv bl
-sub cx, 1 
+shr cl, 2
+sub cl, 1 
 
-xor bx, bx 
+mov [q], cl  ;q=1(znamenatel)
+mov cx, 0      
 
-mov bx, ax
-CBW 
-idiv cx 
+mov ax, [c]
+mov bl, [q]
+div bl
 
-mov result, bx
+mov [result], ax
+
+
 jmp exit 
 exit: 
 ret 
 exitnull: 
 mov ah, 9 
 mov dx, offset str 
-int 21h 
+int 21h  
 ret
