@@ -2,37 +2,41 @@
 org 100h 
 .data 
 str db 'ERROR! null a','$' 
-a dd 0 
-c dd -1 
-d dd 0 
-result dd 0 
-.code 
-mov ax,[c] 
-mov bx, -2 
-imul bx 
+a db 8 
+c db -1 
+d db 0
+two db -2
+et db 82 
+result dw 0 
+.code  
 
-xor bx, bx 
+mov al,[c] 
+CBW 
+imul [two]  
 
-mov cx, [d] 
-mov bx,82 
-imul bx 
-
-xor bx,bx 
+mov cl, [d]
+CBW 
+imul [et]
 
 add ax, cx 
 
-xor cx, cx 
+xor cx, cx
 
-mov cx, [a] 
-cmp cx,0 
-jz exitnull 
-shr cx, 2 
-dec cx 
+mov cl, [a] 
+cmp cl,4 
+jz exitnull
+mov bl, 4 
+CBW
+idiv bl
+sub cx, 1 
 
-mov bx, ax 
+xor bx, bx 
+
+mov bx, ax
+CBW 
 idiv cx 
 
-mov result, bx 
+mov result, bx
 jmp exit 
 exit: 
 ret 
